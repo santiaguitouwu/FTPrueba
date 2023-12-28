@@ -6,10 +6,10 @@
 </head>
 <body>
 <div class="container mt-4  col-lg-4">
-  <div class="card">
+  <div class="card col-sm-10">
     <div class="card-body text-center">
-      <form>
-        <div class="form-group">
+      <form class="form-sign" action="Validar" method="post">
+        <div class="form-group text-center">
           <h3>Aquí va una imagen</h3>
           <label>Bienvenido!</label>
         </div>
