@@ -31,6 +31,6 @@ public class Validar extends HttpServlet {
                 req.getRequestDispatcher("index.jso").forward(req,resp); //si no existe se direcciona a la misma página de login
             }
         }
-        else{req.getRequestDispatcher("index.jso").forward(req,resp);}
+        else{req.getRequestDispatcher("index.jso").forward(req,resp);}//si se presiona algún otro botón retorna a la misma página
     }
 }
