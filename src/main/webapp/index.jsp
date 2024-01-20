@@ -8,9 +8,9 @@
 <div class="container mt-4  col-lg-4">
   <div class="card col-sm-10">
     <div class="card-body text-center">
-      <form class="form-sign" action="Validar" method="post">
+      <form class="form-sign" action="Validar" method="POST">
         <div class="form-group text-center">
-          <h3>Aquí va una imagen</h3>
+          <h3>Aquí va una imagen chao...</h3>
           <label>Bienvenido!</label>
         </div>
         <div class="form-group">
