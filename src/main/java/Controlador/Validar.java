@@ -3,34 +3,41 @@ package Controlador;
 import Modelo.Profesor;
 import Modelo.ProfesorDAO;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.ws.rs.GET;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
+@WebServlet("/Validar")
 public class Validar extends HttpServlet {
     ProfesorDAO profesorDAO = new ProfesorDAO();
     Profesor profesor = new Profesor();
-
+    private static final Logger LOGGER = Logger.getLogger(Validar.class.getName());
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().println("Estoy en el get");
     }
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         String accion = req.getParameter("accion");
-        if (accion.equals("Ingresa")){
+        LOGGER.info(accion);
+        if (accion.equals("Ingresar")){
             String user = req.getParameter("txtuser"); //se obtienen los datos de ingreso del usuario
             String pass = req.getParameter("txtpass");
             profesor = profesorDAO.validar(user,pass);
+            LOGGER.info("Usuario: " + user + ", Contrasena: " + pass);
             if (profesor.getID_Profesor()!=null){
                 req.getRequestDispatcher("Controlador?accion=Principal").forward(req,resp); //si el usuario existe se redirecciona al controlador
+                LOGGER.info("Se encuentra el usuario y contraseña en BD");
             }else{
-                req.getRequestDispatcher("index.jso").forward(req,resp); //si no existe se direcciona a la misma página de login
+                req.getRequestDispatcher("index.jsp").forward(req,resp); //si no existe se direcciona a la misma página de login
+                LOGGER.info("No se encuentra el usuario y contraseña en BD");
             }
         }
-        else{req.getRequestDispatcher("index.jso").forward(req,resp);}//si se presiona algún otro botón retorna a la misma página
+        else{req.getRequestDispatcher("index.jsp").forward(req,resp);}//si se presiona algún otro botón retorna a la misma página
     }
 }

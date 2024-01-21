@@ -1,10 +1,11 @@
 import Config.Conexion;
+import Modelo.ProfesorDAO;
 
 import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
-        Conexion conn = new Conexion();
-        System.out.println(conn.conexion());
+        ProfesorDAO profesor = new ProfesorDAO();
+        profesor.validar("1193101605", "1193101605");
     }
 }
