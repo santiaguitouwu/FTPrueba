@@ -1,5 +1,8 @@
 package Modelo;
 
+import jakarta.servlet.annotation.WebServlet;
+
+@WebServlet("/Profesor")
 public class Profesor {
     String ID_Profesor;
     String Nombre;
@@ -38,5 +41,11 @@ public class Profesor {
         Contrasena = contrasena;
     }
 
+    public String getGetNombre() {
+        return Nombre;
+    }
 
+    public String getGetID_Profesor() {
+        return ID_Profesor;
+    }
 }
