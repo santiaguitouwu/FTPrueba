@@ -31,6 +31,7 @@ public class Validar extends HttpServlet {
             profesor = profesorDAO.validar(user,pass);
             LOGGER.info("Usuario: " + user + ", Contrasena: " + pass);
             if (profesor.getID_Profesor()!=null){
+                req.setAttribute("Usuario",profesor); //se envian los datos a mostrar en el archivo Principal.jsp
                 req.getRequestDispatcher("Controlador?accion=Principal").forward(req,resp); //si el usuario existe se redirecciona al controlador
                 LOGGER.info("Se encuentra el usuario y contraseña en BD");
             }else{
