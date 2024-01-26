@@ -6,12 +6,11 @@
 </head>
 <body>
 <div class="container mt-4  col-lg-4">
-  <div class="card col-sm-10">
+  <div class="card col-sm-10" style="margin-top: 180px">
     <div class="card-body text-center">
       <form class="form-sign" action="Validar" method="POST">
         <div class="form-group text-center">
-          <h3>Aquí va una imagen chao ojalá funcione </h3>
-          <label>Bienvenido!</label>
+          <img src="img/logo_fasttrack.png" alt="300" width="300">
         </div>
         <div class="form-group">
           <label>Usuario</label>
