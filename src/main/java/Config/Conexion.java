@@ -28,7 +28,7 @@ public class Conexion {
             LOGGER.info("Error al cargar el controlador JDBC: " + e.getMessage());
             System.out.println("Error al cargar el controlador JDBC: " + e.getMessage());
         }
-        return con;
+        return con; //se retorna la conexion
     }
 }
 

@@ -1,11 +1,11 @@
-import Config.Conexion;
-import Modelo.ProfesorDAO;
+import Modelo.Estudiante;
+import Modelo.EstudianteDAO;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        ProfesorDAO profesor = new ProfesorDAO();
-        profesor.validar("1193101605", "1193101605");
+
     }
 }
