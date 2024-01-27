@@ -64,7 +64,4 @@ public class Estudiante{
     public String getGetID_Estudiante() {
         return ID_Estudiante;
     }
-    public String getGetNombre() {
-        return Nombre;
-    }
 }

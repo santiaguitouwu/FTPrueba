@@ -105,4 +105,23 @@ public class EstudianteDAO {
             throw new RuntimeException(e);
         }
     }
+    public Estudiante buscar(String id){
+        String sql = "SELECT * FROM estudiante WHERE id_estudiante=" + "'"+id +"'";
+        Estudiante estudiante = new Estudiante();
+        try {
+            con = cn.conexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                estudiante.setID_Estudiante(rs.getString(1));
+                estudiante.setNombre(rs.getString(2));
+                estudiante.setApellido(rs.getString(3));
+                estudiante.setTelefono(rs.getString(4));
+                estudiante.setEmail(rs.getString(5));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return estudiante;
+    }
 }
