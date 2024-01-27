@@ -11,47 +11,42 @@
 </head>
 <body>
 <div class="d-flex">
-    <div class="card col-sm-4">
+    <div class="card col-sm-4" style="height: fit-content; margin-right: 20px">
         <div class="card-body">
             <form action="Controlador?menu=AdmonEstudiantes" method="POST">
-                    <div class="form-group">
-                        <label>IDENTIFICACIÓN 1</label>
-                        <input type="text" value="${Estudiante.getID_Estudiante()}" name="textID_estudiante" class="form-control">
+                    <div class="form-group" style="margin-top: 20px">
+                        <input type="text" value="${Estudiante.getID_Estudiante()}" name="textID_estudiante" class="form-control" placeholder="ID Estudiante">
                     </div>
-                <div class="form-group">
-                    <label>NOMBRE</label>
-                    <input type="text" value="${Estudiante.getNombre()}" name="textNombre" class="form-control">
+                <div class="form-group" style="margin-top: 20px">
+                    <input type="text" value="${Estudiante.getNombre()}" name="textNombre" class="form-control" placeholder="Nombre">
                 </div>
-                <div class="form-group">
-                    <label>APELLIDO</label>
-                    <input type="text" value="${Estudiante.getApellido()}" name="textApellido" class="form-control">
+                <div class="form-group" style="margin-top: 20px">
+                    <input type="text" value="${Estudiante.getApellido()}" name="textApellido" class="form-control" placeholder="Apellido">
                 </div>
-                <div class="form-group">
-                    <label>TELEFONO</label>
-                    <input type="text" value="${Estudiante.getTelefono()}" name="textTelefono" class="form-control">
+                <div class="form-group" style="margin-top: 20px">
+                    <input type="text" value="${Estudiante.getTelefono()}" name="textTelefono" class="form-control" placeholder="Telefono">
                 </div>
-                <div class="form-group">
-                    <label>EMAIL</label>
-                    <input type="text" value="${Estudiante.getEmail()}" name="textEmail" class="form-control">
+                <div class="form-group" style="margin-top: 20px">
+                    <input type="text" value="${Estudiante.getEmail()}" name="textEmail" class="form-control" placeholder="Email">
                 </div>
                 <div style="margin-top: 20px" class="d-flex justify-content-between">
                     <div class="d-flex justify-content-center">
-                        <form>
-                            <input type="hidden" name="accion" value="CREATE">
-                            <button style="border: none; width: 120px; height: 40px; background-color: darkslateblue" class="btn btn-danger" type="submit">CREAR</button>
-                        </form>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <form>
+                        <div class="d-flex justify-content-center">
                             <input type="hidden" name="accion" value="UPDATE">
                             <button style="border: none; width: 120px; height: 40px; background-color: darkcyan" class="btn btn-danger" type="submit">ACTUALIZAR</button>
-                        </form>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center">
+                            <input type="hidden" name="accion" value="CREATE">
+                            <button style="border: none; width: 120px; height: 40px; background-color: darkcyan" class="btn btn-danger" type="submit">CREAR</button>
+                        </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <div style="margin-right: 20px" class="col-sm-8">
+    <div style="margin-right: 20px" class="col-sm-7">
         <table class="table table-hover">
             <thead>
             <th>IDENTIFICACIÓN</th>

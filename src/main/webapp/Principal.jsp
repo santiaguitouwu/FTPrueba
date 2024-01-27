@@ -32,6 +32,7 @@
                     <li class="nav-item">
                         <form action="Controlador" method="POST" target="myFrame">
                             <input type="hidden" name="menu" value="AdmonAsignaturas">
+                            <input type="hidden" name="accion" value="READ">
                             <button style="margin-left: 10px; border: none" class="btn btn-outline-light" type="submit">Administrar Asignaturas</button>
                         </form>
                     </li>

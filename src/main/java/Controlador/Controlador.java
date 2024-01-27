@@ -1,5 +1,7 @@
 package Controlador;
 
+import Modelo.Asignatura;
+import Modelo.AsignaturaDAO;
 import Modelo.Estudiante;
 import Modelo.EstudianteDAO;
 import jakarta.enterprise.context.SessionScoped;
@@ -21,7 +23,10 @@ public class Controlador extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(Controlador.class.getName());
     Estudiante estudiante = new Estudiante();
     EstudianteDAO estudianteDAO = new EstudianteDAO();
+    Asignatura asignatura = new Asignatura();
+    AsignaturaDAO asignaturaDAO = new AsignaturaDAO();
     String ID_Estu;
+    String ID_Asig;
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException{
         String menu = request.getParameter("menu");
@@ -102,6 +107,66 @@ public class Controlador extends HttpServlet {
             request.getRequestDispatcher("AdmonEstudiantes.jsp").forward(request,response);
         }
         if (menu.equals("AdmonAsignaturas")){
+            LOGGER.info("Entra a AdmonAsignaturas");
+            switch (accion){
+                case "CREATE":
+                    LOGGER.info("Entra a CREATE");
+                    String ID_Asignatura = request.getParameter("textID_asignatura");
+                    String Nombre = request.getParameter("textNombre");
+                    String Departamento = request.getParameter("textDepartamento");
+                    LOGGER.info("Datos: " + ID_Asignatura+Nombre+Departamento);
+                    asignatura.setId_Asignatura(ID_Asignatura);
+                    asignatura.setNombre(Nombre);
+                    asignatura.setDepartamento(Departamento);
+                    asignaturaDAO.create(asignatura);
+                    LOGGER.info("va a despachar el request");
+                    request.getRequestDispatcher("Controlador?menu=AdmonAsignaturas&accion=READ").forward(request,response);
+                    break;
+                case "READ":
+                    LOGGER.info("Comenzara el proceso de consulta (READ)");
+                    List<Asignatura> lista = asignaturaDAO.read();
+                    request.setAttribute("asignaturas", lista);
+                    LOGGER.info("se envia la lista"+lista);
+                    break;
+                case "EDIT":
+                    LOGGER.info("Entra al EDIT");
+                    ID_Asig = request.getParameter("id");
+                    try {
+                        LOGGER.info("el ID a modificar es "+ ID_Asig);
+                        Asignatura asignatura = asignaturaDAO.listarID(ID_Asig);
+                        if (asignatura != null){
+                            LOGGER.info("Se obtiene algo de la consulta");
+                            String id = asignatura.getId_Asignatura();
+                            LOGGER.info("ID: "+ id);
+                        } else {LOGGER.info("no se obtienen nada");}
+                        LOGGER.info("Asignatura:" + asignatura);
+                        request.setAttribute("Asignatura", asignatura);
+                        request.getRequestDispatcher("Controlador?menu=AdmonAsignaturas&accion=READ").forward(request,response);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case "UPDATE":
+                    LOGGER.info("Entra a UPDATE");
+                    String ID_Asignatura1 = request.getParameter("textID_asignatura");
+                    String Nombre1 = request.getParameter("textNombre");
+                    String Departamento1 = request.getParameter("textDepartamento");
+                    asignatura.setId_Asignatura(ID_Asignatura1);
+                    asignatura.setNombre(Nombre1);
+                    asignatura.setDepartamento(Departamento1);
+                    LOGGER.info("Asignatura a actualizar" + asignatura);
+                    asignaturaDAO.update(asignatura);
+                    request.getRequestDispatcher("Controlador?menu=AdmonAsignaturas&accion=READ").forward(request,response);
+                case "DELETE":
+                    LOGGER.info("Entra al DELETE");
+                    ID_Asig = request.getParameter("id");
+                    LOGGER.info("el ID a modificar es "+ ID_Asig);
+                    asignaturaDAO.delete(ID_Asig);
+                    request.getRequestDispatcher("Controlador?menu=AdmonAsignaturas&accion=READ").forward(request,response);
+                    break;
+                default:
+                    throw new AssertionError();
+            }
             request.getRequestDispatcher("AdmonAsignaturas.jsp").forward(request,response);
         }
         if (menu.equals("Asignar_Asignaturas")) {
