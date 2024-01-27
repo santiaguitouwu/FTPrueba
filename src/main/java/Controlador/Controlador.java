@@ -170,6 +170,27 @@ public class Controlador extends HttpServlet {
             request.getRequestDispatcher("AdmonAsignaturas.jsp").forward(request,response);
         }
         if (menu.equals("Asignar_Asignaturas")) {
+            LOGGER.info("Entra a Asignar_Asignaturas");
+            switch (accion){
+                case "BuscarEstudiante":
+                    LOGGER.info("Entra a BuscarCliente");
+                    String id = request.getParameter("id_estudiante");
+                    LOGGER.info("Recibe el id de estudiante: "+ id);
+                    estudiante.setID_Estudiante(id);
+                    estudiante = estudianteDAO.buscar(id);
+                    LOGGER.info("Se envia el dato: " + estudiante.getNombre());
+                    request.setAttribute("Estudiante",estudiante);
+                    break;
+                case "BuscarAsignatura":
+                    LOGGER.info("Entra a BuscarAsignatura");
+                    String id1 = request.getParameter("id_asignatura");
+                    LOGGER.info("Recibe el id de estudiante: "+ id1);
+                    asignatura.setId_Asignatura(id1);
+                    asignatura = asignaturaDAO.buscar(id1);
+                    LOGGER.info("Se envia el dato: " + asignatura.getNombre());
+                    request.setAttribute("Asignatura",asignatura);
+                    break;
+            }
             request.getRequestDispatcher("AsignarAsignatura.jsp").forward(request, response);
         }
     }

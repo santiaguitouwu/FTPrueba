@@ -19,6 +19,7 @@
                     <li class="nav-item">
                         <form action="Controlador" method="POST" target="myFrame">
                             <input type="hidden" name="menu" value="Asignar_Asignaturas">
+                            <input type="hidden" name="accion" value="DEFAULT">
                             <button style="margin-left: 10px; border: none" class="btn btn-outline-light" type="submit">Asignar Asignaturas</button>
                         </form>
                     </li>

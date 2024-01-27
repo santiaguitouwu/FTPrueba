@@ -98,4 +98,21 @@ public class AsignaturaDAO {
             throw new RuntimeException(e);
         }
     }
+    public Asignatura buscar(String id){
+        String sql = "SELECT * FROM materia WHERE id_materia=" + "'"+id +"'";
+        Asignatura asignatura = new Asignatura();
+        try {
+            con = cn.conexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                asignatura.setId_Asignatura(rs.getString(1));
+                asignatura.setNombre(rs.getString(2));
+                asignatura.setDepartamento(rs.getString(3));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return asignatura;
+    }
 }

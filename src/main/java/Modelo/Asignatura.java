@@ -40,4 +40,5 @@ public class Asignatura {
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
     }
+
 }
