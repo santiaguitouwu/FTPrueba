@@ -29,19 +29,9 @@
                 <div class="form-group" style="margin-top: 20px">
                     <input type="text" value="${Estudiante.getEmail()}" name="textEmail" class="form-control" placeholder="Email">
                 </div>
-                <div style="margin-top: 20px" class="d-flex justify-content-between">
-                    <div class="d-flex justify-content-center">
-                        <div class="d-flex justify-content-center">
-                            <input type="hidden" name="accion" value="UPDATE">
-                            <button style="border: none; width: 120px; height: 40px; background-color: darkcyan" class="btn btn-danger" type="submit">ACTUALIZAR</button>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div class="d-flex justify-content-center">
-                            <input type="hidden" name="accion" value="CREATE">
-                            <button style="border: none; width: 120px; height: 40px; background-color: darkcyan" class="btn btn-danger" type="submit">CREAR</button>
-                        </div>
-                    </div>
+                <div style="text-align: center; margin-top: 20px">
+                    <button style="border: none; margin-right: 40px" class="btn btn-warning" type="submit" name="accion" value="CREATE">CREAR</button>
+                    <button style="border: none" class="btn btn-danger" type="submit" name="accion" value="UPDATE">ACTUALIZAR</button>
                 </div>
             </form>
         </div>
@@ -66,17 +56,11 @@
                          <td>${estu.telefono}</td>
                          <td>${estu.email}</td>
                          <td>
-                             <form action="Controlador" method="POST">
+                             <form action="Controlador?menu=AdmonEstudiantes" method="POST">
                                  <input type="hidden" name="menu" value="AdmonEstudiantes">
-                                 <input type="hidden" name="accion" value="EDIT">
                                  <input type="hidden" name="id" value="${estu.ID_Estudiante}">
-                                 <button style="border: none" class="btn btn-warning" type="submit">EDITAR</button>
-                             </form>
-                             <form action="Controlador" method="POST">
-                                 <input type="hidden" name="menu" value="AdmonEstudiantes">
-                                 <input type="hidden" name="accion" value="DELETE">
-                                 <input type="hidden" name="id" value="${estu.ID_Estudiante}">
-                                 <button style="border: none" class="btn btn-danger" type="submit">ELIMINAR</button>
+                                 <button style="border: none;" class="btn btn-warning" type="submit" name="accion" value="EDIT">EDITAR</button>
+                                 <button style="border: none;margin-top: 10px;" class="btn btn-danger" type="submit" name="accion" value="DELETE">ELIMINAR</button>
                              </form>
                          </td>
                     </tr>
