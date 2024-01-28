@@ -40,6 +40,7 @@ public class Controlador extends HttpServlet {
         throws ServletException, IOException{
         String menu = request.getParameter("menu");
         String accion = request.getParameter("accion");
+        String tipoConsulta = request.getParameter("tipoConsulta");
         LOGGER.info("La acción es: "+accion);
         LOGGER.info("el menu es: " +menu);
         if (menu.equals("Principal")){
@@ -234,6 +235,40 @@ public class Controlador extends HttpServlet {
 
             }
             request.getRequestDispatcher("AsignarAsignatura.jsp").forward(request, response);
+        }
+        if(menu.equals("AdmonMatricula")){
+            LOGGER.info("la accion es "+ accion);
+            LOGGER.info("la consulta es de tipo "+ tipoConsulta);
+            switch (accion){
+                case "Consultar":
+                    if (tipoConsulta.equals("Xmateria")){
+                        ID_Asignatura = request.getParameter("id");
+                        LOGGER.info("Se consultara el ID: " + ID_Asignatura);
+                        LOGGER.info("Comenzara el proceso de consulta por ID_Materia");
+                        List<AsignarMateria> lista = asignaturaMateriaDAO.readXasignatura(ID_Asignatura);
+                        request.setAttribute("listaAsignatura", lista);
+                        LOGGER.info("se envia la lista"+lista);
+                        break;
+                    }
+                    if (tipoConsulta.equals("Xestudiante")){
+                        ID_Estudiante = request.getParameter("id");
+                        LOGGER.info("Se consultara el ID: " + ID_Estudiante);
+                        LOGGER.info("Comenzara el proceso de consulta por ID_Estudiante");
+                        List<AsignarMateria> lista = asignaturaMateriaDAO.readXestudiante(ID_Estudiante);
+                        request.setAttribute("listaAsignatura", lista);
+                        LOGGER.info("se envia la lista"+lista);
+                        break;
+                    }
+                case "DELETE":
+                    LOGGER.info("Entra al DELETE");
+                    ID_Asig = request.getParameter("id_asignatura");
+                    ID_Estudiante = request.getParameter("id_estudiante");
+                    LOGGER.info("el ID a eliminar es "+ ID_Asig + " y " + ID_Estudiante);
+                    asignaturaMateriaDAO.delete(ID_Estudiante,ID_Asig);
+                    break;
+
+            }
+            request.getRequestDispatcher("AdmonMatricula.jsp").forward(request, response);
         }
     }
 }

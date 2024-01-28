@@ -37,6 +37,13 @@
                             <button style="margin-left: 10px; border: none" class="btn btn-outline-light" type="submit">Administrar Asignaturas</button>
                         </form>
                     </li>
+                    <li class="nav-item">
+                        <form action="Controlador" method="POST" target="myFrame">
+                            <input type="hidden" name="menu" value="AdmonMatricula">
+                            <input type="hidden" name="accion" value="READ">
+                            <button style="margin-left: 10px; border: none" class="btn btn-outline-light" type="submit">Administrar Matriculas</button>
+                        </form>
+                    </li>
                 </ul>
                 <div class="dropdown">
                     <button style="border: none; margin-left: 20px" class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
