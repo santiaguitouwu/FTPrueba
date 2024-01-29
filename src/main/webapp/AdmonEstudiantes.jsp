@@ -1,8 +1,11 @@
 <%--@elvariable id="estudiante" type="Modelo.Estudiante"--%>
 <%--@elvariable id="estudiantes" type="java.util.List"--%>
+<%--@elvariable id="listaPaises" type="java.util.List"--%>
+<%--@elvariable id="Email" type="Modelo.Email"--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="Modelo.Estudiante" %>
+<%@ page import="Modelo.Email" %>
 
 <html>
 <head>
@@ -11,7 +14,7 @@
 </head>
 <body>
 <div class="d-flex">
-    <div class="card col-sm-4" style="height: fit-content; margin-right: 20px">
+    <div class="card col-sm-3" style="height: fit-content; margin-right: 40px">
         <div class="card-body">
             <form action="Controlador?menu=AdmonEstudiantes" method="POST">
                     <div class="form-group" style="margin-top: 20px">
@@ -27,16 +30,21 @@
                     <input type="text" value="${Estudiante.getTelefono()}" name="textTelefono" class="form-control" placeholder="Telefono">
                 </div>
                 <div class="form-group" style="margin-top: 20px">
-                    <input type="text" value="${Estudiante.getEmail()}" name="textEmail" class="form-control" placeholder="Email">
+                    <select name="paisSeleccionado" class="form-select" aria-label="Default select example">
+                        <option selected>Seleccione un pais</option>
+                        <c:forEach var="Email" items="${listaPaises}">
+                            <option value="${Email.pais}">${Email.pais}</option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <div style="text-align: center; margin-top: 20px">
-                    <button style="border: none; margin-right: 40px" class="btn btn-warning" type="submit" name="accion" value="CREATE">CREAR</button>
-                    <button style="border: none" class="btn btn-danger" type="submit" name="accion" value="UPDATE">ACTUALIZAR</button>
+                    <button style="border: none; margin-right: 40px" class="btn btn-success" type="submit" name="accion" value="CREATE">CREAR</button>
+                    <button style="border: none" class="btn btn-primary" type="submit" name="accion" value="UPDATE">ACTUALIZAR</button>
                 </div>
             </form>
         </div>
     </div>
-    <div style="margin-right: 20px" class="col-sm-7">
+    <div style="margin-right: 20px" class="col-sm-8">
         <table class="table table-hover">
             <thead>
             <th>IDENTIFICACIÓN</th>
@@ -60,7 +68,7 @@
                                  <input type="hidden" name="menu" value="AdmonEstudiantes">
                                  <input type="hidden" name="id" value="${estu.ID_Estudiante}">
                                  <button style="border: none;" class="btn btn-warning" type="submit" name="accion" value="EDIT">EDITAR</button>
-                                 <button style="border: none;margin-top: 10px;" class="btn btn-danger" type="submit" name="accion" value="DELETE">ELIMINAR</button>
+                                 <button style="border: none;" class="btn btn-danger" type="submit" name="accion" value="DELETE">ELIMINAR</button>
                              </form>
                          </td>
                     </tr>

@@ -29,11 +29,11 @@
                         </div>
                         <div class="form-group d-flex" style="margin-top: 10px">
                             <div class="col-sm-6 d-flex" style="margin-right: 20px">
-                                <input type="text" name="id_estudiante" class="form-control" placeholder="ID Estudiante">
-                                <input type="submit" name="accion" value="BuscarEstudiante" class="btn btn-outline-info">
+                                <input type="text" name="id_estudiante" class="form-control" placeholder="ID">
+                                <input type="submit" name="accion" value="BuscarEstudiante" class="btn btn-primary btn-sm">
                             </div>
                             <div class="col-sm-5">
-                                <input type="text" name="nombreEstudiante" value="${Estudiante.nombre} ${Estudiante.apellido}" class="form-control">
+                                <input type="text" name="nombreEstudiante" value="${Estudiante.nombre} ${Estudiante.apellido}" class="form-control" disabled>
                             </div>
                         </div>
                         <div class="form-group" style="margin-top: 20px;">
@@ -41,15 +41,15 @@
                         </div>
                         <div class="form-group d-flex" style="margin-top: 10px">
                             <div class="col-sm-6 d-flex" style="margin-right: 20px">
-                                <input type="text" name="id_asignatura" class="form-control" placeholder="ID Asignatura">
-                                <input type="submit" name="accion" value="BuscarAsignatura" class="btn btn-outline-info">
+                                <input type="text" name="id_asignatura" class="form-control" placeholder="ID">
+                                <input type="submit" name="accion" value="BuscarAsignatura" class="btn btn-primary btn-sm">
                             </div>
                             <div class="col-sm-5">
-                                <input type="text" name="nombreAsignatura" value="${Asignatura.nombre}" class="form-control">
+                                <input type="text" name="nombreAsignatura" value="${Asignatura.nombre}" class="form-control" disabled>
                             </div>
                         </div>
-                        <div style="margin-top: 20px">
-                            <input type="submit" name="accion" value="Agregar" class="btn btn-outline-info">
+                        <div style="margin-top: 20px; text-align: center">
+                            <input type="submit" name="accion" value="Agregar" class="btn btn-outline-primary">
                         </div>
                     </div>
                 </form>
@@ -58,10 +58,6 @@
         <div class="col-sm-7">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex col-sm-5 ml-auto">
-                        <label>id estudiante: </label>
-                        <input type="text" name="id_estudiante" class="form-control" placeholder="ID Estudiante">
-                    </div>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -84,7 +80,6 @@
                                     <td>${dato.ID_Estudiante}</td>
                                     <td>${dato.nombreEstudiante} ${dato.apellidoEstudiante}</td>
                                     <td><input type="hidden" name="menu" value="AdmonEstudiantes">
-                                        <button style="border: none;" class="btn btn-warning" type="submit" name="accion" value="EDIT">EDITAR</button>
                                         <button style="border: none;" class="btn btn-danger" type="submit" name="accion" value="DELETE">ELIMINAR</button>
                                     </td>
                                 </tr>

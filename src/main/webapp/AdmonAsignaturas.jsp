@@ -24,8 +24,8 @@
                     <input type="text" value="${Asignatura.getDepartamento()}" name="textDepartamento" class="form-control" placeholder="Departamento">
                 </div>
                 <div style="text-align: center; margin-top: 20px">
-                    <button style="border: none; margin-right: 40px" class="btn btn-warning" type="submit" name="accion" value="CREATE">CREAR</button>
-                    <button style="border: none" class="btn btn-danger" type="submit" name="accion" value="UPDATE">ACTUALIZAR</button>
+                    <button style="border: none; margin-right: 40px" class="btn btn-success" type="submit" name="accion" value="CREATE">CREAR</button>
+                    <button style="border: none" class="btn btn-primary" type="submit" name="accion" value="UPDATE">ACTUALIZAR</button>
                 </div>
             </form>
         </div>
