@@ -24,8 +24,10 @@ public class Controlador extends HttpServlet {
     EstudianteDAO estudianteDAO = new EstudianteDAO();
     Asignatura asignatura = new Asignatura();
     AsignaturaDAO asignaturaDAO = new AsignaturaDAO();
+    Email email = new Email();
     String ID_Estu;
     String ID_Asig;
+    String EmailGenerado;
 
     //Atributos utiliados para asignación de materias
     AsignarMateria asignarMateria = new AsignarMateria();
@@ -44,6 +46,7 @@ public class Controlador extends HttpServlet {
         LOGGER.info("La acción es: "+accion);
         LOGGER.info("el menu es: " +menu);
         if (menu.equals("Principal")){
+            LOGGER.info("Entra a Principal");
             request.getRequestDispatcher("Principal.jsp").forward(request,response);
         }
         if (menu.equals("AdmonEstudiantes")){
@@ -55,12 +58,19 @@ public class Controlador extends HttpServlet {
                     String Nombre = request.getParameter("textNombre");
                     String Apellido = request.getParameter("textApellido");
                     String Telefono = request.getParameter("textTelefono");
-                    String Email = request.getParameter("textEmail");
+                    String Pais = request.getParameter("paisSeleccionado");
+                    LOGGER.info("Se obtiene el PAIS: " +Pais );
                     estudiante.setID_Estudiante(ID_Estudiante);
                     estudiante.setNombre(Nombre);
                     estudiante.setApellido(Apellido);
                     estudiante.setTelefono(Telefono);
-                    estudiante.setEmail(Email);
+                    try {
+                        EmailGenerado=email.generarEmail(Nombre, Apellido, Pais);
+                        LOGGER.info("Se obtiene el email: " +EmailGenerado );
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    estudiante.setEmail(EmailGenerado);
                     estudianteDAO.create(estudiante);
                     LOGGER.info("va a despachar el request");
                     request.getRequestDispatcher("Controlador?menu=AdmonEstudiantes&accion=READ").forward(request,response);
@@ -68,8 +78,11 @@ public class Controlador extends HttpServlet {
                 case "READ":
                     LOGGER.info("Comenzara el proceso de consulta (READ)");
                     List<Estudiante> lista = estudianteDAO.read();
+                    List<Email> listaPaises = email.read();
                     request.setAttribute("estudiantes", lista);
+                    request.setAttribute("listaPaises", listaPaises);
                     LOGGER.info("se envia la lista"+lista);
+                    LOGGER.info("se envia la lista"+listaPaises);
                     break;
                 case "EDIT":
                     LOGGER.info("Entra al EDIT");
