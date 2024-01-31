@@ -255,6 +255,9 @@ public class Controlador extends HttpServlet {
                         asignaturaMateriaDAO.create(materia);
                         LOGGER.info("Se ha matriculado la materia con éxito");
                     }
+                    listaAsignatura = new ArrayList<>();
+                case "Cancelar":
+                    listaAsignatura = new ArrayList<>();
             }
             request.getRequestDispatcher("AsignarAsignatura.jsp").forward(request, response);
         }
