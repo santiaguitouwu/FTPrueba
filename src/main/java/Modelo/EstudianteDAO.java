@@ -41,7 +41,7 @@ public class EstudianteDAO {
         return lista;
     }
 
-    public int create(Estudiante estudiante){
+    public String create(Estudiante estudiante){
         String sql = "INSERT INTO estudiante(id_estudiante, nombre, apellido, telefono, email) VALUES(?,?,?,?,?)";
         try {
             con = cn.conexion();
@@ -52,10 +52,10 @@ public class EstudianteDAO {
             ps.setString(4,estudiante.getTelefono());
             ps.setString(5,estudiante.getEmail());
             ps.executeUpdate();
+            return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return "Error al crear el usuario " + e.getMessage();
         }
-        return respuesta;
     }
 
     public Estudiante listarID(String id) throws SQLException {
@@ -79,15 +79,14 @@ public class EstudianteDAO {
         return estudiante;
     }
     public int update(Estudiante estudiante){
-        String sql = "UPDATE estudiante SET Nombre=?, Apellido=?, Telefono=?, email=? WHERE ID_Estudiante = ?";
+        String sql = "UPDATE estudiante SET Nombre=?, Apellido=?, Telefono=? WHERE ID_Estudiante = ?";
         try {
             con = cn.conexion();
             ps = con.prepareStatement(sql);
             ps.setString(1,estudiante.getNombre());
             ps.setString(2,estudiante.getApellido());
             ps.setString(3,estudiante.getTelefono());
-            ps.setString(4,estudiante.getEmail());
-            ps.setString(5, estudiante.getID_Estudiante());
+            ps.setString(4, estudiante.getID_Estudiante());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

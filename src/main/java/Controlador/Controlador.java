@@ -66,12 +66,18 @@ public class Controlador extends HttpServlet {
                     estudiante.setTelefono(Telefono);
                     try {
                         EmailGenerado=email.generarEmail(Nombre, Apellido, Pais);
-                        LOGGER.info("Se obtiene el email: " +EmailGenerado );
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
+                    LOGGER.info("Se obtiene el email: " +EmailGenerado );
                     estudiante.setEmail(EmailGenerado);
-                    estudianteDAO.create(estudiante);
+                    String error = estudianteDAO.create(estudiante);
+                    if (error != null) {
+                        LOGGER.info("Error"+ error);
+                        request.setAttribute("error", error);
+                    } else {
+                        LOGGER.info("Estudiante creado correctamente");
+                    }
                     LOGGER.info("va a despachar el request");
                     request.getRequestDispatcher("Controlador?menu=AdmonEstudiantes&accion=READ").forward(request,response);
                     break;
@@ -108,12 +114,10 @@ public class Controlador extends HttpServlet {
                     String Nombre1 = request.getParameter("textNombre");
                     String Apellido1 = request.getParameter("textApellido");
                     String Telefono1 = request.getParameter("textTelefono");
-                    String Email1 = request.getParameter("textEmail");
                     estudiante.setID_Estudiante(ID_Estudiante1);
                     estudiante.setNombre(Nombre1);
                     estudiante.setApellido(Apellido1);
                     estudiante.setTelefono(Telefono1);
-                    estudiante.setEmail(Email1);
                     LOGGER.info("Empleado a actualizar" + estudiante);
                     estudianteDAO.update(estudiante);
                     request.getRequestDispatcher("Controlador?menu=AdmonEstudiantes&accion=READ").forward(request,response);
@@ -141,7 +145,13 @@ public class Controlador extends HttpServlet {
                     asignatura.setId_Asignatura(ID_Asignatura);
                     asignatura.setNombre(Nombre);
                     asignatura.setDepartamento(Departamento);
-                    asignaturaDAO.create(asignatura);
+                    String error = asignaturaDAO.create(asignatura);
+                    if (error != null) {
+                        LOGGER.info("Error"+ error);
+                        request.setAttribute("error", error);
+                    } else {
+                        LOGGER.info("Asignatura creada correctamente");
+                    }
                     LOGGER.info("va a despachar el request");
                     request.getRequestDispatcher("Controlador?menu=AdmonAsignaturas&accion=READ").forward(request,response);
                     break;
@@ -245,7 +255,9 @@ public class Controlador extends HttpServlet {
                         asignaturaMateriaDAO.create(materia);
                         LOGGER.info("Se ha matriculado la materia con éxito");
                     }
-
+                    listaAsignatura = new ArrayList<>();
+                case "Cancelar":
+                    listaAsignatura = new ArrayList<>();
             }
             request.getRequestDispatcher("AsignarAsignatura.jsp").forward(request, response);
         }

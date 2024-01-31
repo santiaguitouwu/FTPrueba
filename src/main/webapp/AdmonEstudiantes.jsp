@@ -13,6 +13,14 @@
     <title>Administrar Estudiantes</title>
 </head>
 <body>
+<%-- Verificar si existe un error --%>
+<% if (request.getAttribute("error") != null) { %>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> Ha ocurrido un error con los datos ingresados, por favor verificar
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<% } %>
+
 <div class="d-flex">
     <div class="card col-sm-3" style="height: fit-content; margin-right: 40px">
         <div class="card-body">

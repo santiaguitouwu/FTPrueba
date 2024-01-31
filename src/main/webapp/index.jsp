@@ -12,15 +12,13 @@
         <div class="form-group text-center">
           <img src="img/logo_fasttrack.png" alt="300" width="300">
         </div>
-        <div class="form-group">
-          <label>Usuario</label>
-            <input type="text" name="txtuser" class="form-control">
+        <div class="form-group" style="margin-top: 20px">
+            <input type="text" name="txtuser" class="form-control" placeholder="Usuario">
         </div>
-        <div class="form-group">
-          <label>Contraseña</label>
-            <input type="password" name="txtpass" class="form-control">
+        <div class="form-group" style="margin-top: 20px">
+            <input type="password" name="txtpass" class="form-control" placeholder="Contraseña">
         </div>
-        <input type="submit" name="accion" value="Ingresar" class="btn btn-primary btn-b">
+        <input type="submit" name="accion" value="Ingresar" class="btn btn-primary btn-b" style="margin-top: 20px;">
       </form>
     </div>
   </div>
