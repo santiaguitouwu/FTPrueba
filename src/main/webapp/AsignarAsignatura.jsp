@@ -79,9 +79,6 @@
                                     <td>${dato.nombreDepartamento}</td>
                                     <td>${dato.ID_Estudiante}</td>
                                     <td>${dato.nombreEstudiante} ${dato.apellidoEstudiante}</td>
-                                    <td><input type="hidden" name="menu" value="AdmonEstudiantes">
-                                        <button style="border: none;" class="btn btn-danger" type="submit" name="accion" value="DELETE">ELIMINAR</button>
-                                    </td>
                                 </tr>
                             </c:forEach>
                         </tbody>

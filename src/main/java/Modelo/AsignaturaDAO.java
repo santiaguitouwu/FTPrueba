@@ -17,7 +17,7 @@ public class AsignaturaDAO {
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
-    int respuesta;
+    String respuesta;
     private static final Logger LOGGER = Logger.getLogger(AsignaturaDAO.class.getName());
     public List<Asignatura> read(){
         String sql = "SELECT * FROM materia";
@@ -39,7 +39,7 @@ public class AsignaturaDAO {
         return lista;
     }
 
-    public int create(Asignatura asignatura){
+    public String create(Asignatura asignatura){
         String sql = "INSERT INTO materia(id_materia, nombre, departamento) VALUES(?,?,?)";
         try {
             con = cn.conexion();
@@ -48,10 +48,10 @@ public class AsignaturaDAO {
             ps.setString(2,asignatura.getNombre());
             ps.setString(3,asignatura.getDepartamento());
             ps.executeUpdate();
+            return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return "Error al crear la asignatura" + e.getMessage();
         }
-        return respuesta;
     }
 
     public Asignatura listarID(String id) throws SQLException {
@@ -73,7 +73,7 @@ public class AsignaturaDAO {
         }
         return asignatura;
     }
-    public int update(Asignatura asignatura){
+    public String update(Asignatura asignatura){
         String sql = "UPDATE materia SET Nombre=?, departamento=? WHERE id_materia = ?";
         try {
             con = cn.conexion();

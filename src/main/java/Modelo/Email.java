@@ -62,11 +62,15 @@ public class Email {
         String paiss = "'" + pais + "'";
         String sql = "SELECT * FROM paises WHERE pais =" + paiss;
 
-        con = cn.conexion();
-        ps = con.prepareStatement(sql);
-        rs=ps.executeQuery();
-        while (rs.next()){
-            dominio = rs.getString(2);
+        try {
+            con = cn.conexion();
+            ps = con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while (rs.next()){
+                dominio = rs.getString(2);
+            }
+        } catch (SQLException e){
+            new RuntimeException(e);
         }
     return dominio;
     }
