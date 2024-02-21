@@ -22,7 +22,7 @@
                         <form action="Controlador" method="POST" target="myFrame">
                             <input type="hidden" name="menu" value="Asignar_Asignaturas">
                             <input type="hidden" name="accion" value="DEFAULT">
-                            <button style="margin-left: 10px; border: none" class="btn btn-outline-light" type="submit">Asignar Asignaturas</button>
+                            <button style="margin-left: 10px; border: none" class="btn btn-outline-light" type="submit">Matricular Asignaturas</button>
                         </form>
                     </li>
                     <li class="nav-item" style="margin-top: 10px">
@@ -43,7 +43,7 @@
                         <form action="Controlador" method="POST" target="myFrame">
                             <input type="hidden" name="menu" value="AdmonMatricula">
                             <input type="hidden" name="accion" value="READ">
-                            <button style="margin-left: 10px; border: none" class="btn btn-outline-light" type="submit">Administrar Matriculas</button>
+                            <button style="margin-left: 10px; border: none" class="btn btn-outline-light" type="submit">Consulta Matriculas</button>
                         </form>
                     </li>
                 </ul>
